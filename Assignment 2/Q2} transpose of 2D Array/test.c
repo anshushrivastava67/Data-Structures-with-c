@@ -1,73 +1,34 @@
 /******************************************************************************
 
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
+Code, Compile, Run and Debug online from anywhere in world.
 
 *******************************************************************************/
-
 #include <stdio.h>
 #define rows 100
 #define columns 100
-void sum(int a[rows][columns],int r,int c,int b[rows][columns]){
-    int i,j,sum[100][100];
+void transpose(int a[rows][columns],int r,int c){
+    int i,j,temp;
     for(i=0;i<r;i++)
     {
         for(j=0;j<c;j++)
         {
-            sum[i][j]=b[i][j]+a[i][j];
+            temp=a[i][j];
+            a[i][j]=a[j][i];
+            a[j][i]=temp;
         }
     }
     for(i=0;i<r;i++)
     {
         for(j=0;j<c;j++)
         {
-            printf("%d ",sum[i][j]);
-        }
-        printf("\n");
-    }
-}
-
-void subtract(int a[rows][columns],int r,int c,int b[rows][columns]){
-    int i,j,subtract[100][100];
-    for(i=0;i<r;i++)
-    {
-        for(j=0;j<c;j++)
-        {
-            subtract[i][j]=a[i][j]-b[i][j];
-        }
-    }
-    for(i=0;i<r;i++)
-    {
-        for(j=0;j<c;j++)
-        {
-            printf("%d ",subtract[i][j]);
+            printf("%d ",a[j][i]);
         }
         printf("\n");
     }
 }
-
-void multiply(int a[rows][columns],int r,int c,int b[rows][columns]){
-     int i,j,mul[100][100],k;
-    for(i=0;i<r;i++)
-    {
-        for(j=0;j<c;j++)
-        {
-            mul[i][j]=0;
-            for(k=0;k<r*c;k++){
-            mul[i][j]=mul[i][j]+a[i][k]*b[k][j];}
-        }
-    }
-    for(i=0;i<r;i++)
-    {
-        for(j=0;j<c;j++)
-        {
-            printf("%d ",mul[i][j]);
-        }
-        printf("\n");
-    }
-}
-
 int main()
 {
     int a[rows][columns],r,c,i,j,b[rows][columns];
@@ -84,23 +45,7 @@ int main()
             scanf("%d",&a[i][j]);
         }
     }
-    printf("Enter the Elements of the 2nd Matrix\n");
-    for(i=0;i<r;i++)
-    {
-        for(j=0;j<c;j++)
-        {
-            printf("Enter the elements:");
-            scanf("%d",&b[i][j]);
-        }
-    }
-    printf("Addition of 2D array: ");
-    sum(a,r,c,b);
-    printf("\nSubtration of 2D array: ");
-    subtract(a,r,c,b);
-    printf("\nMultiplication of 2D array: ");
-    multiply(a,r,c,b);
-    
-    return 0;
-}
-
+    printf("\nTranspose of a matrix is:\n");
+    transpose(a,r,c);
+}    
 
